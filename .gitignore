@@ -1,0 +1,23 @@
+# Project
+test-reports/
+
+# Gradle
+.gradle/*
+bin/
+build/
+.gradle
+.gradletasknamecache
+gradle-app.setting
+!gradle/wrapper/gradle-wrapper.jar
+
+# Java
+*.class
+*.jar
+
+# IntelliJ
+out/
+.idea/
+.idea_modules/
+*.iml
+*.ipr
+*.iws
