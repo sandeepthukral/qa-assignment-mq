@@ -10,9 +10,9 @@ public class EmployeesPage extends TestBase {
 
     SelenideElement pageMainElement = $(".main-view-wrapper-employees"),
                     logoutButton = $(""),
-                    createButton = $(""),
-                    editButton = $(""),
-                    deleteButton = $(""),
+                    createButton = $("#bAdd"),
+                    editButton = $("#bEdit"),
+                    deleteButton = $("#bDelete"),
                     employeeList = $("#employee-list");
 
     public boolean isPageLoaded() {
@@ -21,5 +21,10 @@ public class EmployeesPage extends TestBase {
 
     public boolean isEmployeesListVisible() {
         return employeeList.exists();
+    }
+
+    public EmployeesAddPage clickCreateButton() {
+        createButton.click();
+        return new EmployeesAddPage();
     }
 }

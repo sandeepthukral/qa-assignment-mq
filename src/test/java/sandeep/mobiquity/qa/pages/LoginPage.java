@@ -1,12 +1,12 @@
 package sandeep.mobiquity.qa.pages;
 
 import com.codeborne.selenide.SelenideElement;
-import org.openqa.selenium.By;
+import sandeep.mobiquity.qa.base.TestBase;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-public class LoginPage{
+public class LoginPage extends TestBase {
 
     SelenideElement
             username=$("input[type='text']"),
@@ -37,5 +37,12 @@ public class LoginPage{
         this.enterPassword(password);
         this.submitForm();
         return this;
+    }
+
+    public EmployeesPage loginWithCorrectCredentials() {
+        String username = prop.getProperty("user.correct.username");
+        String password = prop.getProperty("user.correct.password");
+        this.login(username, password);
+        return new EmployeesPage();
     }
 }
