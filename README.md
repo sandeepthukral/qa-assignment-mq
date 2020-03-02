@@ -1,15 +1,13 @@
-# QA Assignment for Mobiquity
+# QA Assignment for your company
 
 ## About
-This is my attempt at the QA assignment for Mobiquity
+This is my attempt at the QA assignment for your company
 
 ## Requirements
 - Java 1.8
 
 ## Instructions for OsX
 - Clone the repo
-- In the root of the cloned repo, make the file gradlew executable \
-`chmod +x gradlew`
 - Run the following command to execute the tests \
 `./gradlew clean test`
 - The report will be available in the folder `test-report/cucumber`. Open it using the command \

@@ -1,4 +1,4 @@
-package sandeep.mobiquity.qa.testrunner;
+package sandeep.qa.testrunner;
 
 import com.codeborne.selenide.junit.ScreenShooter;
 import io.cucumber.junit.Cucumber;
@@ -8,9 +8,9 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = "src/test/java/sandeep/mobiquity/qa/features",
+        features = "src/test/java/sandeep/qa/features",
         glue = "",
-        plugin = {"de.monochromata.cucumber.report.PrettyReports:test-reports/cucumber"},
+        plugin = {"pretty", "de.monochromata.cucumber.report.PrettyReports:test-reports/cucumber"},
         strict = true
 )
 public class TestRunner {

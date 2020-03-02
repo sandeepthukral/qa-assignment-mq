@@ -1,4 +1,4 @@
-package sandeep.mobiquity.qa.utils;
+package sandeep.qa.utils;
 
 import org.apache.commons.lang.RandomStringUtils;
 

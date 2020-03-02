@@ -1,4 +1,4 @@
-package sandeep.mobiquity.qa.base;
+package sandeep.qa.base;
 
 import com.codeborne.selenide.Configuration;
 
@@ -16,7 +16,7 @@ public class TestBase {
         try{
             if (null == prop) {
                 prop = new Properties();
-                FileInputStream fis = new FileInputStream("src/test/java/sandeep/mobiquity/qa/config.properties");
+                FileInputStream fis = new FileInputStream("src/test/java/sandeep/qa/config.properties");
                 prop.load(fis);
             }
         } catch (IOException e) {

@@ -1,21 +1,24 @@
-package sandeep.mobiquity.qa.steps;
+package sandeep.qa.steps;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import sandeep.mobiquity.qa.base.TestBase;
-import sandeep.mobiquity.qa.pages.EmployeesPage;
-import sandeep.mobiquity.qa.pages.LoginPage;
-
-import static com.codeborne.selenide.Selenide.open;
-import static com.codeborne.selenide.Selenide.sleep;
+import sandeep.qa.base.TestBase;
+import sandeep.qa.pages.EmployeesPage;
+import sandeep.qa.pages.LoginPage;
 
 public class LoginStepDefinitions extends TestBase {
 
+    private Context context;
+
     LoginPage page = new LoginPage();
     EmployeesPage employeesPage = new EmployeesPage();
+
+    public LoginStepDefinitions(Context context) {
+        this.context = context;
+    }
 
     @Given("the login page")
     public void theLoginPage() {
@@ -37,5 +40,10 @@ public class LoginStepDefinitions extends TestBase {
         page.enterUsername(prop.getProperty("user.correct.username"))
                 .enterPassword(prop.getProperty("user.correct.password"))
                 .submitForm();
+    }
+
+    @Then("I should see the employee created")
+    public void iShouldSeeTheEmployeeCreated() {
+        Assert.assertTrue(employeesPage.isEmployeeListed(context.firstName + " " + context.lastName));
     }
 }

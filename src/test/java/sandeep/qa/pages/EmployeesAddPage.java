@@ -1,7 +1,7 @@
-package sandeep.mobiquity.qa.pages;
+package sandeep.qa.pages;
 
 import com.codeborne.selenide.SelenideElement;
-import sandeep.mobiquity.qa.base.TestBase;
+import sandeep.qa.base.TestBase;
 
 import static com.codeborne.selenide.Selenide.$;
 

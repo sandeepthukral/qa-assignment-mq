@@ -1,10 +1,12 @@
-package sandeep.mobiquity.qa.pages;
+package sandeep.qa.pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import sandeep.mobiquity.qa.base.TestBase;
+import sandeep.qa.base.TestBase;
 
-import static com.codeborne.selenide.Selenide.$;
+import java.util.List;
+
+import static com.codeborne.selenide.Selenide.*;
 
 public class EmployeesPage extends TestBase {
 
@@ -20,11 +22,17 @@ public class EmployeesPage extends TestBase {
     }
 
     public boolean isEmployeesListVisible() {
-        return employeeList.exists();
+        return employeeList.shouldBe(Condition.visible).exists();
     }
 
     public EmployeesAddPage clickCreateButton() {
         createButton.click();
         return new EmployeesAddPage();
+    }
+
+    public boolean isEmployeeListed(String name) {
+        sleep(1000);
+        List<String> employeeNames = $$("ul#employee-list li").texts();
+        return employeeNames.contains(name);
     }
 }

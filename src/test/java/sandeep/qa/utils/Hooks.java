@@ -1,4 +1,4 @@
-package sandeep.mobiquity.qa.utils;
+package sandeep.qa.utils;
 
 import com.codeborne.selenide.Configuration;
 import io.cucumber.java.After;

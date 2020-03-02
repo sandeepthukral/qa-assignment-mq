@@ -5,4 +5,5 @@ Feature: Add new employee
     When I click the Create button
     And I enter employee details
     And I save the Employee
-    Then I should see the employee created
+    Then the list of employees should be displayed
+    And I should see the employee created
