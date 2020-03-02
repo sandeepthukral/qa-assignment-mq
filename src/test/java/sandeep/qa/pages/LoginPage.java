@@ -1,17 +1,18 @@
 package sandeep.qa.pages;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import sandeep.qa.base.TestBase;
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
 public class LoginPage extends TestBase {
 
     SelenideElement
             username=$("input[type='text']"),
             password=$("input[type='password']"),
-            submitButton=$("button[type='submit']");
+            submitButton=$("button[type='submit']"),
+            errorMessage=$("p.error-message");
 
     public LoginPage visit() {
         open("");
@@ -44,5 +45,13 @@ public class LoginPage extends TestBase {
         String password = prop.getProperty("user.correct.password");
         this.login(username, password);
         return new EmployeesPage();
+    }
+
+    public boolean isDisplayed() {
+        return username.isDisplayed();
+    }
+
+    public void waitForErrorMessageToBeDisplayed() {
+        errorMessage.shouldNotHave(Condition.cssClass("ng-hide"));
     }
 }
