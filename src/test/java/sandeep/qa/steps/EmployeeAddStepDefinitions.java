@@ -11,20 +11,25 @@ import sandeep.qa.pages.LoginPage;
 import static sandeep.qa.utils.RandomGenerator.getRandomEmail;
 import static sandeep.qa.utils.RandomGenerator.getRandomName;
 
-public class EmployeesAddStepDefinitions extends TestBase {
+public class EmployeeAddStepDefinitions extends TestBase {
 
     private Context context;
 
-    EmployeesPage employeesPage;
-    EmployeesAddPage page;
+    EmployeesPage employeesPage = new EmployeesPage();
+    EmployeesAddPage page = new EmployeesAddPage();
 
-    public EmployeesAddStepDefinitions(Context context) {
+    public EmployeeAddStepDefinitions(Context context) {
         this.context = context;
     }
 
     @Given("I am on employees page")
     public void iAmOnEmployeesPage() {
         employeesPage = new LoginPage().visit().loginWithCorrectCredentials();
+    }
+
+    @Given("I visit the employees page")
+    public void iVisitTheEmployeesPage() {
+        employeesPage.visit();
     }
 
     @When("I click the Create button")
@@ -36,12 +41,12 @@ public class EmployeesAddStepDefinitions extends TestBase {
     public void iEnterEmployeeDetails() {
         String firstName = getRandomName();
         String lastName = getRandomName();
-        String date = "2020-01-01";
+        String startDate = "2020-01-01";
         String email = getRandomEmail();
         context.firstName = firstName;
         context.lastName = lastName;
         context.email = email;
-        page.createEmployee(firstName, lastName, date, email);
+        page.createEmployee(firstName, lastName, startDate, email);
     }
 
     @And("I save the Employee")

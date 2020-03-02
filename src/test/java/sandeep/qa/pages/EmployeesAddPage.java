@@ -10,19 +10,19 @@ public class EmployeesAddPage extends TestBase {
     SelenideElement form = $("form[name='employeeForm']"),
                     firstNameInput = $("input[ng-model='selectedEmployee.firstName']"),
                     lastNameInput = $("input[ng-model='selectedEmployee.lastName']"),
-                    dateInput = $("input[ng-model='selectedEmployee.startDate']"),
+                    startDateInput = $("input[ng-model='selectedEmployee.startDate']"),
                     emailInput = $("input[ng-model='selectedEmployee.email']"),
-                    submitButton = $("button[type='submit']", 1);
+                    addSubmitButton = $("button[type='submit']", 1);
     ;
 
-    public void createEmployee(String firstName, String lastName, String date, String email) {
+    public void createEmployee(String firstName, String lastName, String startDate, String email) {
         firstNameInput.val(firstName);
         lastNameInput.val(lastName);
-        dateInput.val(date);
+        startDateInput.val(startDate);
         emailInput.val(email);
     }
 
     public void submitForm() {
-        submitButton.click();
+        addSubmitButton.click();
     }
 }
