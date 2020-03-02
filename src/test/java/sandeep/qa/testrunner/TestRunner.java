@@ -9,8 +9,8 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         features = "src/test/java/sandeep/qa/features",
-        glue = "",
-        plugin = {"pretty", "de.monochromata.cucumber.report.PrettyReports:test-reports/cucumber"},
+        glue = "sandeep.qa.steps",
+        plugin = {"pretty", "de.monochromata.cucumber.report.PrettyReports:build/test-reports/cucumber"},
         strict = true
 )
 public class TestRunner {

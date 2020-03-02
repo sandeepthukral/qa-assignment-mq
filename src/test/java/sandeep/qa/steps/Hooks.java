@@ -1,4 +1,4 @@
-package sandeep.qa.utils;
+package sandeep.qa.steps;
 
 import com.codeborne.selenide.Configuration;
 import io.cucumber.java.After;
