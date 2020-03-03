@@ -17,6 +17,10 @@ public class Employee {
         return this.firstName;
     }
 
+    public String getName() {
+        return this.firstName + " " + this.lastName;
+    }
+
     public String getLastName() {
         return this.lastName;
     }
@@ -24,4 +28,8 @@ public class Employee {
     public String getStartDate() {
         return this.startDate;
     }
+
+    public void setFirstName(String firstName) { this.firstName = firstName;}
+
+    public void setLastName(String lastName) { this.lastName = lastName;}
 }

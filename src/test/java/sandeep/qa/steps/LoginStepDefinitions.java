@@ -46,7 +46,7 @@ public class LoginStepDefinitions extends TestBase {
 
     @Then("I should see the employee created")
     public void iShouldSeeTheEmployeeCreated() {
-        Assert.assertTrue(employeesPage.isEmployeeListed(context.firstName + " " + context.lastName));
+        Assert.assertTrue(employeesPage.isEmployeeListed(context.employee.getName()));
     }
 
     @When("I enter random credentials and login")

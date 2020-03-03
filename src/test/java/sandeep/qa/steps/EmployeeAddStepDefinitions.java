@@ -8,6 +8,7 @@ import sandeep.qa.base.TestBase;
 import sandeep.qa.pages.EmployeesAddPage;
 import sandeep.qa.pages.EmployeesPage;
 import sandeep.qa.pages.LoginPage;
+import sandeep.qa.utils.Employee;
 
 import static com.codeborne.selenide.Selenide.confirm;
 import static sandeep.qa.utils.RandomGenerator.getRandomEmail;
@@ -45,9 +46,7 @@ public class EmployeeAddStepDefinitions extends TestBase {
         String lastName = getRandomName();
         String startDate = "2020-01-01";
         String email = getRandomEmail();
-        context.firstName = firstName;
-        context.lastName = lastName;
-        context.email = email;
+        context.employee = new Employee(firstName, lastName, startDate, email);
         page.createEmployee(firstName, lastName, startDate, email);
     }
 
@@ -57,9 +56,6 @@ public class EmployeeAddStepDefinitions extends TestBase {
         String lastName = getRandomName();
         String startDate = "Invalid Date";
         String email = getRandomEmail();
-        context.firstName = firstName;
-        context.lastName = lastName;
-        context.email = email;
         page.createEmployee(firstName, lastName, startDate, email);
     }
 

@@ -20,11 +20,13 @@ public class EmployeeEditStepDefinitions {
 
     @And("I update the last name")
     public void iUpdateTheLastName() {
-        context.firstName = getRandomName();
-        context.lastName = getRandomName();
-        employeeEditPage.setFirstName(context.firstName);
-        employeeEditPage.setLastName(context.lastName);
+        String newFirstName = getRandomName();
+        String newLastName = getRandomName();
+        employeeEditPage.setFirstName(newFirstName);
+        employeeEditPage.setLastName(newLastName);
         employeeEditPage.update();
+        context.employee.setFirstName(newFirstName);
+        context.employee.setLastName(newLastName);
     }
 
     @And("I delete the employee")

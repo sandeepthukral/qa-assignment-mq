@@ -28,7 +28,7 @@ public class EmployeesStepDefinitions {
 
     @And("I should see the updated name displayed")
     public void iShouldSeeTheUpdatedNameDisplayed() {
-        Assert.assertTrue(employeesPage.isEmployeeListed(context.firstName + " " + context.lastName));
+        Assert.assertTrue(employeesPage.isEmployeeListed(context.employee.getName()));
     }
 
     @And("I click the Edit button")
