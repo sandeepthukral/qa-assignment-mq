@@ -12,6 +12,13 @@ import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class Hooks {
+
+    private Context context;
+
+    public Hooks(Context context){
+        this.context = context;
+    }
+
     @Before
     public void setUp() {
         Configuration.startMaximized = false;
@@ -19,11 +26,17 @@ public class Hooks {
     }
     @After
     public void tearDown(Scenario scenario) {
+        // take and attach screenshot if the scenario has failed
         if (scenario.isFailed()){
             WebDriver driver = getWebDriver();
             final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
             scenario.embed(screenshot, "image/png", "Failure Screenshot");
         }
+
+        // execute cleanups
+        context.laterExecution.performCleanups();
+
+        // close the webdriver
         closeWebDriver();
     }
 }
