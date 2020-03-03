@@ -2,12 +2,14 @@ package sandeep.qa.steps;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import sandeep.qa.base.TestBase;
 import sandeep.qa.pages.EmployeesAddPage;
 import sandeep.qa.pages.EmployeesPage;
 import sandeep.qa.pages.LoginPage;
 
+import static com.codeborne.selenide.Selenide.confirm;
 import static sandeep.qa.utils.RandomGenerator.getRandomEmail;
 import static sandeep.qa.utils.RandomGenerator.getRandomName;
 
@@ -49,8 +51,25 @@ public class EmployeeAddStepDefinitions extends TestBase {
         page.createEmployee(firstName, lastName, startDate, email);
     }
 
-    @And("I save the Employee")
-    public void iSaveTheEmployee() {
+    @And("I enter employee details with invalid date")
+    public void iEnterEmployeeDetailsWithIncorrectDate() {
+        String firstName = getRandomName();
+        String lastName = getRandomName();
+        String startDate = "Invalid Date";
+        String email = getRandomEmail();
+        context.firstName = firstName;
+        context.lastName = lastName;
+        context.email = email;
+        page.createEmployee(firstName, lastName, startDate, email);
+    }
+
+    @And("I add the Employee")
+    public void iAddTheEmployee() {
         page.submitForm();
+    }
+
+    @Then("the start date cannot be empty dialog should be displayed")
+    public void theStartDateCannotBeEmptyDialogShouldBeDisplayed() {
+        confirm("Error trying to create a new employee: {\"start_date\":[\"can't be blank\"]})");
     }
 }

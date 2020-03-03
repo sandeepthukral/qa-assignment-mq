@@ -55,11 +55,11 @@ public class EmployeesPage extends TestBase {
     }
 
     public void clickEditButton() {
-        editButton.click();;
+        editButton.click();
     }
 
     public void clickDeleteButton() {
-        deleteButton.click();;
+        deleteButton.click();
     }
 
     public void confirmDeleteDialog() {

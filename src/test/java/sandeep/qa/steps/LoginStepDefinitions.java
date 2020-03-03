@@ -9,7 +9,7 @@ import sandeep.qa.base.TestBase;
 import sandeep.qa.pages.EmployeesPage;
 import sandeep.qa.pages.LoginPage;
 
-import static sandeep.qa.utils.RandomGenerator.getRandomName;
+import static sandeep.qa.utils.RandomGenerator.*;
 
 public class LoginStepDefinitions extends TestBase {
 
@@ -51,7 +51,7 @@ public class LoginStepDefinitions extends TestBase {
 
     @When("I enter random credentials and login")
     public void iEnterRandomCredentialsAndLogin() {
-        loginPage.enterUsername(getRandomName()).enterPassword(getRandomName()).submitForm();
+        loginPage.enterUsername(getRandomUsername()).enterPassword(getRandomPassword()).submitForm();
     }
 
     @Then("I should not be logged in")

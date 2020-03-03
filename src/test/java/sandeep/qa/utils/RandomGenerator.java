@@ -11,4 +11,12 @@ public class RandomGenerator {
     public static String getRandomEmail() {
         return RandomStringUtils.randomAlphabetic(10) + "@no-email.address";
     }
+
+    public static String getRandomUsername() {
+        return RandomStringUtils.randomAlphabetic(10);
+    }
+
+    public static String getRandomPassword() {
+        return RandomStringUtils.randomAlphabetic(10);
+    }
 }

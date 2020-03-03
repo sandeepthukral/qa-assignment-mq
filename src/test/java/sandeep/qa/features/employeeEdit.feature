@@ -17,7 +17,6 @@ Feature: Edit employee details
     Then I should be redirected to the employee edit page
 
   Scenario: Editing an employee with invalid start date will not update the start date
-    Given a newly created employee
     And I am on employees page
     And I double click the employee
     When I update the user with an invalid start date
