@@ -13,6 +13,9 @@ public class TestBase {
     public static Properties prop;
     public static Map<String, String> config;
 
+    protected static final boolean REMOTE_DRIVER = Boolean.parseBoolean(System.getProperty("REMOTE_DRIVER", "false"));
+    protected static final String BROWSER = System.getProperty("BROWSER", "chrome");
+
     public TestBase(){
         try {
             if (null == prop) {
@@ -31,8 +34,12 @@ public class TestBase {
         }
 
         Configuration.startMaximized = false;
-        Configuration.browser = config.get("browser");
+        Configuration.browser = BROWSER;
         Configuration.browserSize = config.get("browser.size");
         Configuration.baseUrl = config.get("base_url");
+        if (REMOTE_DRIVER) {
+            Configuration.remote = "http://localhost:4444/wd/hub";
+            Configuration.driverManagerEnabled = false;
+        }
     }
 }
