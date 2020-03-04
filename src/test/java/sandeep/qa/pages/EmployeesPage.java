@@ -4,6 +4,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import sandeep.qa.base.TestBase;
 
+import java.util.Collection;
 import java.util.List;
 
 import static com.codeborne.selenide.Selectors.withText;
@@ -16,7 +17,8 @@ public class EmployeesPage extends TestBase {
                     createButton = $("#bAdd"),
                     editButton = $("#bEdit"),
                     deleteButton = $("#bDelete"),
-                    employeeList = $("#employee-list");
+                    employeeList = $("#employee-list"),
+                    greeting = $("#greetings");
 
     public EmployeesPage visit() {
         open("employees");
@@ -65,4 +67,29 @@ public class EmployeesPage extends TestBase {
     public void confirmDeleteDialog() {
         confirm();
     }
+
+    public String getGreeting() {
+        return greeting.innerText().trim();
+    }
+
+    public boolean isLogoutButtonDisplayed() {
+        return logoutButton.isDisplayed();
+    }
+
+    public boolean isCreateButtonEnabled() {
+        return this.isButtonEnabled(createButton);
+    }
+
+    public boolean isEditButtonEnabled() {
+        return this.isButtonEnabled(editButton);
+    }
+    public boolean isDeleteButtonEnabled() {
+        return this.isButtonEnabled(deleteButton);
+    }
+
+    private boolean isButtonEnabled(SelenideElement element){
+        String classes = element.getAttribute("class");
+        return !classes.contains("disabled");
+    }
+
 }
