@@ -63,4 +63,25 @@ public class LoginStepDefinitions extends TestBase {
     public void andInvalidCredentialsMessageShouldBeDisplayed() {
         loginPage.waitForErrorMessageToBeDisplayed();
     }
+
+    @When("I enter correct username and incorrect password and login")
+    public void iEnterCorrectUsernameAndIncorrectPasswordAndLogin() {
+        loginPage
+                .enterUsername(config.get("user.correct.username"))
+                .enterPassword(getRandomPassword())
+                .submitForm();
+    }
+
+    @When("I enter incorrect username and correct password and login")
+    public void iEnterIncorrectUsernameAndCorrectPasswordAndLogin() {
+        loginPage
+                .enterUsername(getRandomUsername())
+                .enterPassword(config.get("user.correct.password"))
+                .submitForm();
+    }
+
+    @When("I enter no credentials and login")
+    public void iEnterNoCredentialsAndLogin() {
+        loginPage.submitForm();
+    }
 }
