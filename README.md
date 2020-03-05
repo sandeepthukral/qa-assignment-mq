@@ -64,10 +64,6 @@ This will be useful when running on Jenkins using docker solutions like selenoid
 - Then the glue code for the new steps will have to be written in the steps package.
 - To support these new steps, you might need to extend the Page Object files in the pages package.
 
-## Additional tests
-Additional tests that could be added based on the limited understanding of the application under test 
-have been mentioned as commented scenarios in the feature files.
-
 ## My thought process
 
 ### Getting started
@@ -80,19 +76,19 @@ I was looking for the network calls made, their payloads and headers and the coo
 ### Choice of frameworks and components
 
 #### Cucumber
-- I chose Java and Cucumber because BDD makes it easier to read the scenarios. 
+I chose Java and Cucumber because BDD makes it easier to read the scenarios. 
 This can lead to more involvement of other stakeholders in the testing process.
 If this is not a requirement in the project, we can fall back to more traditional test automation in JUnit or TestNG.
 
 #### Selenide
-- I chose selenide as it is a very convenient wrapper over the standard WebDriver. 
-It allows me to and not worry about managing WebDriver and individual browser drivers.
+I chose selenide as it is a very convenient wrapper over the standard WebDriver. 
+It manages WebDriver and individual browser drivers and provides a fluent API with powerful selectors.
 
 #### REST Assured
 I chose REST Assured to make REST calls to endpoints exposed by the application for test data setup and cleaning.
 
 ### Data use
-- I have added code that will clean test data as much as possible. 
+I have added code that will clean test data as much as possible. 
 Any test data created for editing or deleting a customer is deleted in the After call.
 This ensures a cleaner list of test employees in the application.
 
@@ -101,7 +97,7 @@ Frontend components, especially VueJS and React, throw JavaScript errors in the 
 These errors usually result in frontend issues and should be caught and reported.
 
 The framework has the capability to fail tests if SEVERE JS errors are observed. But it has been turned off for now, 
-because an error is reported when creating a user with invalid email address.  
+because an error is reported when creating a user with an invalid date or updating one with an invalid email address.  
 
 ## Further (proposed) improvements for the framework
 ### Run the tests on CI platform
@@ -115,6 +111,6 @@ That *might* require replacing a few components of the framework, like jUnit wit
 This is not yet required for this solution but would be for a bigger project.
 
 ### Using API calls in place of UI flow
-If we have access to (internal) APIs and some more time then we can automate user login or further improve user creation.
-via API calls instead of via the UI. This can help speed up the process, ensure test data is always present 
+If we have access to (internal) APIs and some more time then we can automate user login or further improve user creation
+via API calls instead of via the UI. This can help speed up testing, ensure test data is always present 
 when required and finally clean it up (if required).
