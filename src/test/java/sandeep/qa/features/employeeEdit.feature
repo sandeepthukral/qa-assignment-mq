@@ -18,6 +18,11 @@ Feature: Edit employee details
     Then the list of employees should be displayed
     And I should see the updated employee name displayed
 
+
+  ## This scenario could actually be a bug.
+  ## When an invalid date is entered the update button should not dismiss the edit form
+  ## The behavior should be the same as that for updating with an invalid email address below
+  ## For now, I am keeping it as a test as I cannot decide whether this is a bug or not
   Scenario: Editing an employee with invalid start date will not update the start date
     Given I am on employees page
     And I double click the employee
