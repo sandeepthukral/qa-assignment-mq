@@ -7,20 +7,31 @@ This is my attempt at the QA assignment for your company
 - git
 - Java 1.8
 
-## Instructions for OsX
+## Instructions for OsX 
 - Clone the repo \
-`git clone https://github.com/sandeepthukral/qa-assignment.git`
+`git clone https://github.com/sandeepthukral/qa-assignment-mq.git`
 - Once done, move into the repo folder\
-`cd qa-assignment`
+`cd qa-assignment-mq`
 - Run the following command to execute the tests \
 `./gradlew clean test`
-- The report will be available in the folder `test-report/cucumber`. Open it using the command \
+- The report will be available in the folder `build/test-report/cucumber`. Open it using the command \
 `open build/test-reports/cucumber/cucumber-html-reports/overview-features.html`
+
+## Instructions for Windows (this project has not been tested on Windows)
+- Clone the repo \
+`git clone https://github.com/sandeepthukral/qa-assignment-mq.git`
+- Once done, move into the repo folder\
+`cmd qa-assignment-mq`
+- Run the following command to execute the tests \
+`gradlew.bat clean test`
+- The report will be available in the folder `build\\test-report\\cucumber`. Open it by navigating to and double-clicking the file \
+`build\\test-reports\\cucumber\\cucumber-html-reports\\overview-features.html`
 
 ### Options
 - The tests execute by default on Chrome. In order to run the tests on Firefox,\
 `./gradlew -DBROWSER=firefox clean test`\
 The options are `chrome`, `firefox`, `ie`, `edge`, `opera`
+(The project has been tested on OsX with Chrome and Firefox)
 
 ## Package information
 
@@ -28,9 +39,9 @@ The options are `chrome`, `firefox`, `ie`, `edge`, `opera`
 - The framework uses Java, jUnit, Selenide, Cucumber JVM, REST Assured
 - Selenide manages getting the relevant driver and also starts the webdriver. \
 But it mainly is a wrapper on selenium webdriver, providing useful, fluent access to elements and commands on the same.
-- The framework is ready for being executed on a remote driver. 
-This will be useful when running on Jenkins using docker solutions like selenoid or zalenium.
 - REST Assured has been use to make REST calls to endpoints exposed by the application for test data setup and cleaning.
+- The framework is ready for being executed on a remote hub. 
+This will be useful when running on Jenkins using docker solutions like selenoid or zalenium.
 
 ### Structure
 - `sandeep.qa.features` - Contains the feature files
@@ -44,6 +55,7 @@ This will be useful when running on Jenkins using docker solutions like selenoid
 - *Context* - Helps share data across steps
 - *TestRunner* - The runner for Cucumber 
 - *Utils/Cleanups* - Runnable methods to be executed later
+- *Utils/Hooks* - Before and After hooks and checks for JS Errors
 - *Utils/EndpointsApi* - Api to call endpoints that the browser calls. Faster data setup and teardown
 - *Utils/LaterExecution* - Setting and executing data cleanup Runnable methods.
 
@@ -53,8 +65,8 @@ This will be useful when running on Jenkins using docker solutions like selenoid
 - To support these new steps, you might need to extend the Page Object files in the pages package.
 
 ## Additional tests
-Additional tests that could be added based on the limited understanding of the application under test have 
-been mentioned as commented scenarios in the feature files.
+Additional tests that could be added based on the limited understanding of the application under test 
+have been mentioned as commented scenarios in the feature files.
 
 ## My thought process
 
@@ -66,13 +78,16 @@ I was looking for the network calls made, their payloads and headers and the coo
 - Based on this exploration, I wrote down the test scenarios I would like to execute.
 
 ### Choice of frameworks and components
+
 #### Cucumber
 - I chose Java and Cucumber because BDD makes it easier to read the scenarios. 
 This can lead to more involvement of other stakeholders in the testing process.
 If this is not a requirement in the project, we can fall back to more traditional test automation in JUnit or TestNG.
+
 #### Selenide
 - I chose selenide as it is a very convenient wrapper over the standard WebDriver. 
 It allows me to and not worry about managing WebDriver and individual browser drivers.
+
 #### REST Assured
 I chose REST Assured to make REST calls to endpoints exposed by the application for test data setup and cleaning.
 
@@ -80,6 +95,13 @@ I chose REST Assured to make REST calls to endpoints exposed by the application 
 - I have added code that will clean test data as much as possible. 
 Any test data created for editing or deleting a customer is deleted in the After call.
 This ensures a cleaner list of test employees in the application.
+
+### Checks for JS Errors
+Frontend components, especially VueJS and React, throw JavaScript errors in the console if something goes wrong with them.
+These errors usually result in frontend issues and should be caught and reported.
+
+The framework has the capability to fail tests if SEVERE JS errors are observed. But it has been turned off for now, 
+because an error is reported when creating a user with invalid email address.  
 
 ## Further (proposed) improvements for the framework
 ### Run the tests on CI platform
