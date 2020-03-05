@@ -14,3 +14,10 @@ Feature: Add new employee
     And I enter employee details with invalid date
     And I add the Employee
     Then the start date cannot be empty dialog should be displayed
+
+  Scenario: New employee is not added if the Cancel button is clicked
+    Given I am on employees page
+    When I click the Create button
+    And I enter employee details
+    And I click the Cancel button
+    Then I should not see the employee

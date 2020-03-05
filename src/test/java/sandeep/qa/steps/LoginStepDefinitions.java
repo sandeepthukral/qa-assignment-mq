@@ -29,12 +29,12 @@ public class LoginStepDefinitions extends TestBase {
 
     @Then("I should be logged in")
     public void iShouldBeLoggedIn() {
-        Assert.assertTrue(employeesPage.isPageLoaded());
+        Assert.assertTrue("Employees page was not loaded", employeesPage.isPageLoaded());
     }
 
     @And("the list of employees should be displayed")
     public void theListOfEmployeesShouldBeDisplayed() {
-        Assert.assertTrue(employeesPage.isEmployeesListVisible());
+        Assert.assertTrue("Employees page is not displayed", employeesPage.isEmployeesListVisible());
     }
 
     @When("I enter correct credentials and login")
@@ -46,7 +46,7 @@ public class LoginStepDefinitions extends TestBase {
 
     @Then("I should see the employee created")
     public void iShouldSeeTheEmployeeCreated() {
-        Assert.assertTrue(employeesPage.isEmployeeListed(context.employee.getName()));
+        Assert.assertTrue("Employee was not listed", employeesPage.isEmployeeListed(context.employee.getName()));
     }
 
     @When("I enter random credentials and login")
@@ -56,7 +56,7 @@ public class LoginStepDefinitions extends TestBase {
 
     @Then("I should not be logged in")
     public void iShouldNotBeLoggedIn() {
-        Assert.assertTrue(loginPage.isDisplayed());
+        Assert.assertTrue("Login page was not displayed", loginPage.isDisplayed());
     }
 
     @And("and invalid credentials message should be displayed")

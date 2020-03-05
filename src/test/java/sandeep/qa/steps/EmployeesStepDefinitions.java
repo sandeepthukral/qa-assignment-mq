@@ -27,9 +27,14 @@ public class EmployeesStepDefinitions extends TestBase {
         employeesPage.doubleClickEmployee(context.employee.getFirstName() + " " + context.employee.getLastName());
     }
 
-    @And("I should see the updated name displayed")
-    public void iShouldSeeTheUpdatedNameDisplayed() {
-        Assert.assertTrue(employeesPage.isEmployeeListed(context.employee.getName()));
+    @And("I should see the updated employee name displayed")
+    public void iShouldSeeTheUpdatedEmployeeNameDisplayed() {
+        Assert.assertTrue("Updated data of the employee were not displayed", employeesPage.isEmployeeListed(context.employee.getName()));
+    }
+
+    @Then("I should see the original employee name displayed")
+    public void iShouldSeeTheOriginalEmployeeNameDisplayed() {
+        Assert.assertTrue("Employee name was updated", employeesPage.isEmployeeListed(context.employee.getName()));
     }
 
     @And("I click the Edit button")
@@ -49,10 +54,8 @@ public class EmployeesStepDefinitions extends TestBase {
 
     @Then("I should not see the employee")
     public void iShouldNotSeeTheEmployee() {
-        Assert.assertFalse("Employee was not deleted",
-                            employeesPage.isEmployeeListed(
-                                    context.employee.getFirstName() + " " + context.employee.getLastName())
-        );
+        Assert.assertFalse("Employee "+ context.employee.getName() + " was not deleted",
+                employeesPage.isEmployeeListed(context.employee.getName()));
     }
 
     @And("confirm the delete dialog")

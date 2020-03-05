@@ -7,7 +7,8 @@ import static com.codeborne.selenide.Selenide.confirm;
 public class EmployeeEditPage extends EmployeesAddPage {
 
     SelenideElement updateButton = $(".formFooter button[type='submit']"),
-                    deleteButton = $(".formFooter p.main-button");
+                    deleteButton = $(".formFooter p.main-button"),
+                    backButton = $(".bBack");
 
     public void setFirstName(String firstName) {
         firstNameInput.clear();
@@ -19,11 +20,20 @@ public class EmployeeEditPage extends EmployeesAddPage {
         lastNameInput.val(lastName);
     }
 
+    public EmployeeEditPage setStartDate(String input) {
+        startDateInput.val(input);
+        return this;
+    }
+
+    public void setEmail(String value) {
+        emailInput.val(value);
+    }
+
     public boolean isEmployeeDetailsDisplayed(String firstName, String lastName) {
         return firstNameInput.val().equals(firstName) && lastNameInput.val().equals(lastName);
     }
 
-    public void update() {
+    public void clickUpdateButton() {
         updateButton.click();
     }
 
@@ -32,17 +42,26 @@ public class EmployeeEditPage extends EmployeesAddPage {
         confirm();
     }
 
-    public EmployeeEditPage updateStartDate(String input) {
-        startDateInput.val(input);
-        return this;
-    }
-
     public String getStartDate() {
         return startDateInput.val();
+    }
+
+    public boolean isEmailInputInvalid() {
+        return !this.isInputFieldValid(emailInput);
+    }
+
+    public void clickBackButton() {
+        backButton.click();
     }
 
     @Override
     public void submitForm() {
         updateButton.click();
+    }
+
+    private boolean isInputFieldValid(SelenideElement element) {
+        String classes = element.getAttribute("class");
+        System.out.println(classes);
+        return !classes.contains("ng-invalid");
     }
 }

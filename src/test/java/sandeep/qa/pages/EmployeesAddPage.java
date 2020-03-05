@@ -12,10 +12,11 @@ public class EmployeesAddPage extends TestBase {
                     lastNameInput = $("input[ng-model='selectedEmployee.lastName']"),
                     startDateInput = $("input[ng-model='selectedEmployee.startDate']"),
                     emailInput = $("input[ng-model='selectedEmployee.email']"),
-                    addSubmitButton = $("button[type='submit']", 1);
+                    addSubmitButton = $("button[type='submit']", 1),
+                    cancelButton = $ (".bCancel");
     ;
 
-    public void createEmployee(String firstName, String lastName, String startDate, String email) {
+    public void enterEmployeeDetails(String firstName, String lastName, String startDate, String email) {
         firstNameInput.val(firstName);
         lastNameInput.val(lastName);
         startDateInput.val(startDate);
@@ -24,5 +25,9 @@ public class EmployeesAddPage extends TestBase {
 
     public void submitForm() {
         addSubmitButton.click();
+    }
+
+    public void clickCancelButon() {
+        cancelButton.click();
     }
 }

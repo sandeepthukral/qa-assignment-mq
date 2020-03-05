@@ -1,14 +1,9 @@
 # Project
-test-reports/
-
-# Gradle
-.gradle/*
 bin/
 build/
+
+# Gradle
 .gradle
-.gradletasknamecache
-gradle-app.setting
-!gradle/wrapper/gradle-wrapper.jar
 
 # Java
 *.class

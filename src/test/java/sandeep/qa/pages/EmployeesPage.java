@@ -45,6 +45,7 @@ public class EmployeesPage extends TestBase {
     }
 
     public void doubleClickEmployee(String name){
+        $(withText(name)).scrollIntoView(false);
         $(withText(name)).doubleClick();
     }
 

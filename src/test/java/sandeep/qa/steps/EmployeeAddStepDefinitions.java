@@ -47,7 +47,7 @@ public class EmployeeAddStepDefinitions extends TestBase {
         String startDate = "2020-01-01";
         String email = getRandomEmail();
         context.employee = new Employee(firstName, lastName, startDate, email);
-        page.createEmployee(firstName, lastName, startDate, email);
+        page.enterEmployeeDetails(firstName, lastName, startDate, email);
     }
 
     @And("I enter employee details with invalid date")
@@ -56,7 +56,7 @@ public class EmployeeAddStepDefinitions extends TestBase {
         String lastName = getRandomName();
         String startDate = "Invalid Date";
         String email = getRandomEmail();
-        page.createEmployee(firstName, lastName, startDate, email);
+        page.enterEmployeeDetails(firstName, lastName, startDate, email);
     }
 
     @And("I add the Employee")
@@ -67,5 +67,10 @@ public class EmployeeAddStepDefinitions extends TestBase {
     @Then("the start date cannot be empty dialog should be displayed")
     public void theStartDateCannotBeEmptyDialogShouldBeDisplayed() {
         confirm("Error trying to create a new employee: {\"start_date\":[\"can't be blank\"]})");
+    }
+
+    @And("I click the Cancel button")
+    public void iClickTheCancelButton() {
+        page.clickCancelButon();
     }
 }
