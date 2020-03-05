@@ -59,6 +59,15 @@ public class EmployeeAddStepDefinitions extends TestBase {
         page.enterEmployeeDetails(firstName, lastName, startDate, email);
     }
 
+    @And("I enter employee details with invalid email address")
+    public void iEnterEmployeeDetailsWithInvalidEmailAddress() {
+        String firstName = getRandomName();
+        String lastName = getRandomName();
+        String startDate = "2020-01-01";
+        String email = "incorrectEmailAddress";
+        page.enterEmployeeDetails(firstName, lastName, startDate, email);
+    }
+
     @And("I add the Employee")
     public void iAddTheEmployee() {
         page.submitForm();
